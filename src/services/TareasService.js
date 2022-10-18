@@ -1,6 +1,8 @@
+const backend = 'http://localhost:3000'
+
 export async function getTareas(){
     try {
-        const response = await fetch('/tareas');
+        const response = await fetch(backend+'/tareas');
         return await response.json();
     } 
     catch(error) {
@@ -9,7 +11,7 @@ export async function getTareas(){
 }
 export async function createTarea(tarea){
     try{
-        const response = await fetch(`/tareas`,  {
+        const response = await fetch(backend+`/tareas`,  {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(tarea)
@@ -22,7 +24,7 @@ export async function createTarea(tarea){
 }
 export async function updateTarea(tarea){
     try{
-        const response = await fetch(`/tareas`,  {
+        const response = await fetch(backend+`/tareas`,  {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(tarea)

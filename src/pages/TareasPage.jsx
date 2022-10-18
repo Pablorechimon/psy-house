@@ -1,11 +1,13 @@
 import  { React, useState, useEffect, useCallback } from 'react';
 import { getTareas } from '../services/TareasService';
 import TareasList from '../Components/Tareas/TareasList';
+import TareaForm from '../Components/Tareas/TareaForm';
 
 const TareasPage = () => {
 
     const [tareas, setTareas] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [newItem, setNewItem] = useState(false);
 
 
 
@@ -21,6 +23,14 @@ const TareasPage = () => {
         fetchTareasHandler()
     }, [fetchTareasHandler])
 
+    useEffect(() => {
+        if (newItem) {
+            fetchTareasHandler();
+            setNewItem(false)
+        } 
+    }, [newItem])
+
+
 
     return (
         <div>
@@ -29,9 +39,11 @@ const TareasPage = () => {
                      <div className="mb-4">
                          <h1 className="text-grey-darkest text-center">Todo List</h1>
                          <section>
-                            {!isLoading && tareas.length > 0 && <TareasList tareas={tareas} />}
+                            {!isLoading && tareas.length > 0 && <TareasList tareas={tareas} /> }
                             {isLoading && <p>Loading ...</p>}
-                        </section>    
+                        </section>   
+                        {!isLoading && tareas.length > 0 && <TareaForm setNewItem={setNewItem}/> }
+                        
                      </div>
                 </div>
             </div>

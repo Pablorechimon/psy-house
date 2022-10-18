@@ -1,7 +1,7 @@
 import  { React, useState, useEffect, useCallback } from 'react';
 import { getPacientes } from '../services/PacientesService';
-import PacientesList from '../Components/Paciente/PacientesList';
-import PacientesFilter from '../Components/Paciente/PacientesFilter';
+import PacientesList from '../Components/Pacientes/PacientesList';
+import PacientesFilter from '../Components/Pacientes/PacientesFilter';
 
 const PacientesPage = () => {
 

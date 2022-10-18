@@ -1,7 +1,9 @@
+const backend = 'http://localhost:3000'
+
 export async function getPacientes(){
 
     try {
-        const response = await fetch('/pacientes');
+        const response = await fetch(backend+'/pacientes');
         return await response.json();
     } 
     catch(error) {
@@ -11,7 +13,7 @@ export async function getPacientes(){
 
 export async function getPaciente(id_paciente){
     try {
-        const response = await fetch(`pacientes/${id_paciente}`)
+        const response = await fetch(backend+`/pacientes/${id_paciente}`)
         return await response.json();
     }
     catch (error) {
@@ -21,7 +23,7 @@ export async function getPaciente(id_paciente){
 
 export async function createPaciente(paciente){
     try{
-        const response = await fetch(`pacientes/`,  {
+        const response = await fetch(backend+`/pacientes/`,  {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(paciente)
@@ -35,7 +37,7 @@ export async function createPaciente(paciente){
 
 export async function updatePaciente(pacienteChanges){
     try{
-        const response = await fetch(`pacientes/`,  {
+        const response = await fetch(backend+`/pacientes/`,  {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(pacienteChanges)            

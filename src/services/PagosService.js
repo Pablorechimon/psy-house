@@ -1,8 +1,10 @@
 import { getPaciente } from "./PacientesService";
 
+const backend = 'http://localhost:3000'
+
 export async function getPagos(){
     try {
-        const response = await fetch('/pagos');
+        const response = await fetch(backend+'/pagos');
         return await response.json();
     } 
     catch(error) {
@@ -11,7 +13,7 @@ export async function getPagos(){
 }
 export async function createPagos(pago){
     try{
-        const response = await fetch(`/pagos`,  {
+        const response = await fetch(backend+`/pagos`,  {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(pago)

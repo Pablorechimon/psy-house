@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Paciente = ({key, paciente}) => {
+    const navigate  = useNavigate();
 
     function getAge(dateString) {
         var today = new Date();
@@ -13,10 +15,15 @@ const Paciente = ({key, paciente}) => {
         return age;
     }
 
+    const clickHandler = () => {
+        console.log(paciente._id + " clicked")
+        navigate("/pacientes/" + paciente._id)
+      }
+
     const edad = getAge(paciente.fecha_nacimiento)
     
     return (
-        <div className='divide-y divide-gray-200'>
+        <div className='divide-y divide-gray-200' onClick={clickHandler}>
             <li className='py-4 flex justify-around flex items-stretch'>
                 <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
                     <div className="shrink-0 h-4 w-4">
