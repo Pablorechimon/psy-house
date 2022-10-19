@@ -14,6 +14,7 @@ export async function getPacientes(){
 export async function getPaciente(id_paciente){
     try {
         const response = await fetch(backend+`/pacientes/${id_paciente}`)
+        console.log(response)
         return await response.json();
     }
     catch (error) {

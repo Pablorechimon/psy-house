@@ -2,7 +2,6 @@ import  { React, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getPaciente } from '../services/PacientesService';
 import PacienteX from '../Components/Paciente/PacienteX';
-import CompartidosPage from './CompartidosPage';
 
 const PacientePage = () => {
     const navigate  = useNavigate();
@@ -40,6 +39,10 @@ const PacientePage = () => {
         navigate("/pacientes/" + paciente._id + "/notas")
     }
 
+    const clickPacientePagosHandler = () => {
+        navigate("/pacientes/" + paciente._id + "/pagos")
+    }
+
     return (
         <div>
             <section>
@@ -50,6 +53,7 @@ const PacientePage = () => {
             <button onClick={clickConceptualizacionesHandler}> Ver Conceptualizaciones con Paciente </button>
             <button onClick={clickHistoriasHandler}> Ver Historias con Paciente </button>
             <button onClick={clickNotasHandler}> Ver Notas con Paciente </button>
+            <button onClick={clickPacientePagosHandler}> Agregar Pago de Paciente </button>
         </div>
     )
 };

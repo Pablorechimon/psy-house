@@ -1,5 +1,6 @@
 import  { React, useState, useEffect, useCallback } from 'react';
 import ConceptualizacionesList from '../Components/Conceptualizacion/ConceptualizacionesList';
+import ConceptualizacionForm from '../Components/Conceptualizacion/ConceptualizacionForm';
 import { getConceptualizaciones } from '../services/ConceptualizacionesService';
 
 const ConceptualizacionesPage = () => {
@@ -8,6 +9,7 @@ const ConceptualizacionesPage = () => {
 
     const [conceptualizaciones, setConceptualizaciones] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [newItem, setNewItem] = useState(false);
 
     const fetchConceptualizacionesHandler = useCallback(async () => {
         setIsLoading(true)
@@ -21,6 +23,12 @@ const ConceptualizacionesPage = () => {
         fetchConceptualizacionesHandler()
     }, [fetchConceptualizacionesHandler])
 
+    useEffect(() => {
+        if (newItem) {
+            fetchConceptualizacionesHandler();
+            setNewItem(false)
+        } 
+    }, [newItem])
 
 
     return (
@@ -33,6 +41,7 @@ const ConceptualizacionesPage = () => {
                             {!isLoading && conceptualizaciones.length > 0 && <ConceptualizacionesList conceptualizaciones={conceptualizaciones} />}
                             {isLoading && <p>Loading ...</p>}
                         </section>    
+                        {!isLoading && <ConceptualizacionForm setNewItem={setNewItem} pacienteid={pacienteid}/> }
                      </div>
                 </div>
             </div>

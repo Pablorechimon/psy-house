@@ -10,6 +10,7 @@ import CompartidosPage from './pages/CompartidosPage';
 import ConceptualizacionesPage from './pages/ConceptualizacionesPage';
 import HistoriasPage from './pages/HistoriasPage';
 import NotasPage from './pages/NotasPage';
+import PacientePagosPage from './pages/PacientePagosPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route exact strict path='/pacientes/:id/historias' element={ <HistoriasPage/> }/>
             <Route exact strict path='/pacientes/:id/conceptualizaciones' element={ <ConceptualizacionesPage/> }/>
             <Route exact strict path='/pacientes/:id/compartidos' element={ <CompartidosPage/> }/>
+            <Route exact strict path='/pacientes/:id/pagos' element={ <PacientePagosPage/> }/>
             <Route exact strict path='/tareas' element={ <TareasPage/> }/>
             <Route exact strict path='/pagos' element={ <PagosPage/> }/>
           </Routes>

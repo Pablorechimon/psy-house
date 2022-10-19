@@ -11,9 +11,20 @@ export async function getPagos(){
         return {message: 'Error while fetching Pagos', error: error}
     }
 }
-export async function createPagos(pago){
+
+export async function getPagosPaciente(paciente){
+    try {
+        const response = await fetch(backend + '/pacientes/' + paciente +'/pagos');
+        return await response.json();
+    } 
+    catch(error) {
+        return {message: 'Error while fetching Pagos', error: error}
+    }
+}
+
+export async function createPago(pago, paciente){
     try{
-        const response = await fetch(backend+`/pagos`,  {
+        const response = await fetch(backend + '/pacientes/' + paciente +`/pagos`,  {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(pago)

@@ -1,6 +1,7 @@
 import  { React, useState, useEffect, useCallback } from 'react';
 import { getHistorias } from '../services/HistoriasService';
 import HistoriasList from '../Components/Historia/HistoriasList';
+import HistoriaForm from '../Components/Historia/HistoriaForm';
 
 const HistoriasPage = () => {
     
@@ -8,6 +9,7 @@ const HistoriasPage = () => {
 
     const [historias, setHistorias] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [newItem, setNewItem] = useState(false);
 
     const fetchHistoriasHandler = useCallback(async () => {
         setIsLoading(true)
@@ -21,6 +23,12 @@ const HistoriasPage = () => {
         fetchHistoriasHandler()
     }, [fetchHistoriasHandler])
 
+    useEffect(() => {
+        if (newItem) {
+            fetchHistoriasHandler();
+            setNewItem(false)
+        } 
+    }, [newItem])
 
 
     return (
@@ -32,7 +40,8 @@ const HistoriasPage = () => {
                          <section>
                             {!isLoading && historias.length > 0 && <HistoriasList historias={historias} />}
                             {isLoading && <p>Loading ...</p>}
-                        </section>    
+                        </section>  
+                        {!isLoading && <HistoriaForm setNewItem={setNewItem} pacienteid={pacienteid}/> }  
                      </div>
                 </div>
             </div>
