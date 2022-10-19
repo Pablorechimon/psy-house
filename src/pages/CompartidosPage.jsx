@@ -1,6 +1,7 @@
 import  { React, useState, useEffect, useCallback } from 'react';
 import { getCompartidos } from '../services/CompartidosService';
 import CompartidosList from '../Components/Compartido/CompartidosList';
+import CompartidoForm from '../Components/Compartido/CompartidoForm';
 
 const CompartidosPage = () => {
     
@@ -8,13 +9,13 @@ const CompartidosPage = () => {
 
     const [compartidos, setCompartidos] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [newItem, setNewItem] = useState(false);
 
     const fetchCompartidosHandler = useCallback(async () => {
         setIsLoading(true)
         
         const response = await getCompartidos(pacienteid);
         setCompartidos(response.data)
-        console.log(response)
         setIsLoading(false)
     }, [])
     
@@ -22,6 +23,12 @@ const CompartidosPage = () => {
         fetchCompartidosHandler()
     }, [fetchCompartidosHandler])
 
+    useEffect(() => {
+        if (newItem) {
+            fetchCompartidosHandler();
+            setNewItem(false)
+        } 
+    }, [newItem])
 
 
     return (
@@ -34,6 +41,7 @@ const CompartidosPage = () => {
                             {!isLoading && compartidos.length > 0 && <CompartidosList compartidos={compartidos} />}
                             {isLoading && <p>Loading ...</p>}
                         </section>    
+                        {!isLoading && <CompartidoForm setNewItem={setNewItem} pacienteid={pacienteid}/> }
                      </div>
                 </div>
             </div>

@@ -16,7 +16,6 @@ const Paciente = ({key, paciente}) => {
     }
 
     const clickHandler = () => {
-        console.log(paciente._id + " clicked")
         navigate("/pacientes/" + paciente._id)
       }
 

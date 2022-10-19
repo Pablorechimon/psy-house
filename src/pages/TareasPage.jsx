@@ -42,7 +42,7 @@ const TareasPage = () => {
                             {!isLoading && tareas.length > 0 && <TareasList tareas={tareas} /> }
                             {isLoading && <p>Loading ...</p>}
                         </section>   
-                        {!isLoading && tareas.length > 0 && <TareaForm setNewItem={setNewItem}/> }
+                        {!isLoading && <TareaForm setNewItem={setNewItem}/> }
                         
                      </div>
                 </div>

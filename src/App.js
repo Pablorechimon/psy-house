@@ -7,6 +7,9 @@ import TareasPage from './pages/TareasPage';
 import PagosPage from './pages/PagosPage';
 import PacientePage from './pages/PacientePage';
 import CompartidosPage from './pages/CompartidosPage';
+import ConceptualizacionesPage from './pages/ConceptualizacionesPage';
+import HistoriasPage from './pages/HistoriasPage';
+import NotasPage from './pages/NotasPage';
 
 function App() {
   return (
@@ -17,9 +20,9 @@ function App() {
             <Route exact strict path='' element={ <HomePage/> }/>
             <Route exact strict path='/pacientes' element={ <PacientesPage/> }/>
             <Route exact strict path='/pacientes/:id' element={ <PacientePage/> }/>
-            <Route exact strict path='/pacientes/:id/notas' element={ <div>Notas</div> }/>
-            <Route exact strict path='/pacientes/:id/historias' element={ <div>Historias</div> }/>
-            <Route exact strict path='/pacientes/:id/conceptualizaciones' element={ <div>Conceptualizaciones</div> }/>
+            <Route exact strict path='/pacientes/:id/notas' element={ <NotasPage/> }/>
+            <Route exact strict path='/pacientes/:id/historias' element={ <HistoriasPage/> }/>
+            <Route exact strict path='/pacientes/:id/conceptualizaciones' element={ <ConceptualizacionesPage/> }/>
             <Route exact strict path='/pacientes/:id/compartidos' element={ <CompartidosPage/> }/>
             <Route exact strict path='/tareas' element={ <TareasPage/> }/>
             <Route exact strict path='/pagos' element={ <PagosPage/> }/>

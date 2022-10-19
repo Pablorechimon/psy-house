@@ -24,8 +24,20 @@ const PacientePage = () => {
         fetchPacienteHandler()
     }, [fetchPacienteHandler])
 
-    const clickHandler = () => {
+    const clickCompartidosHandler = () => {
         navigate("/pacientes/" + paciente._id + "/compartidos")
+    }
+
+    const clickConceptualizacionesHandler = () => {
+        navigate("/pacientes/" + paciente._id + "/conceptualizaciones")
+    }
+
+    const clickHistoriasHandler = () => {
+        navigate("/pacientes/" + paciente._id + "/historias")
+    }
+
+    const clickNotasHandler = () => {
+        navigate("/pacientes/" + paciente._id + "/notas")
     }
 
     return (
@@ -34,7 +46,10 @@ const PacientePage = () => {
                 {!isLoading && paciente && <PacienteX paciente={paciente} />}
                 {isLoading && <p>Loading ...</p>}
             </section>    
-            <button onClick={clickHandler}> Ver Compartidos con Paciente </button>
+            <button onClick={clickCompartidosHandler}> Ver Compartidos con Paciente </button>
+            <button onClick={clickConceptualizacionesHandler}> Ver Conceptualizaciones con Paciente </button>
+            <button onClick={clickHistoriasHandler}> Ver Historias con Paciente </button>
+            <button onClick={clickNotasHandler}> Ver Notas con Paciente </button>
         </div>
     )
 };

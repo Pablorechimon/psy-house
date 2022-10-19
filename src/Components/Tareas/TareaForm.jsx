@@ -28,7 +28,7 @@ const TareaForm = ({setNewItem, tarea, updateTarea, setIsEditing}) => {
 
     return (
         <form className="flex mt-4" onSubmit={submitHandler}>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Add Todo" name="descripcion" id="descripcion" defaultValue={formState.descripcion} onChange={changeHandler}/>
+            <input className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Add Compartido" name="nombre" id="nombre" defaultValue={formState.descripcion} onChange={changeHandler}/>
             <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal" type="submit">Add</button>
         </form>
     )

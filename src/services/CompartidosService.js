@@ -3,7 +3,6 @@ const backend = 'http://localhost:3000'
 export async function getCompartidos(paciente){
     try {
         const response = await fetch(backend + '/pacientes/' + paciente + '/compartidos');
-        console.log(response)
         return await response.json();
     } 
     catch(error) {

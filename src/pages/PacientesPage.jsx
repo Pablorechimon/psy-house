@@ -37,7 +37,7 @@ const PacientesPage = () => {
             onClickFilter={filterButtonHandler}
             />
             <section>
-                {!isLoading && pacientes.length > 0 && <PacientesList pacientes={filteredPaciente} />}
+                {!isLoading && pacientes.length > 0 && <PacientesList pacientes={filteredPaciente} key={pacientes.id}/>}
                 {isLoading && <p>Loading ...</p>}
             </section>    
         </div>
