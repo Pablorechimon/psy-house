@@ -9,11 +9,25 @@ const PacientesFilter = (props) => {
   }
 
   return (
-    <div className='text-center'>
-      <div className=''>
-        <label>Busque su paciente</label>
+    <div className='text-center flex justify-center'>
+      <div className='p-4 m-4 mb-3 xl:w-96'>
+        
         <form>
-          <input type="text" value={paciente} placeholder='Search...' onChange={changeHandler}/>
+          <input type="text" value={paciente} placeholder='Busque su Paciente...' onChange={changeHandler} className='
+          form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-green-dark
+        font-normal
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'/>
         </form>
       </div>
     </div>

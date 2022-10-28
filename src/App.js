@@ -11,15 +11,17 @@ import ConceptualizacionesPage from './pages/ConceptualizacionesPage';
 import HistoriasPage from './pages/HistoriasPage';
 import NotasPage from './pages/NotasPage';
 import PacientePagosPage from './pages/PacientePagosPage';
+import AltaPacienteFormPage from './pages/AltaPacienteFormPage';
 
 function App() {
   return (
-    <div className="">
+    <div className="font-nav bg-gradient-to-r from-green to-green-dark text-cream">
       <BrowserRouter className="App">
         <NavBar/>
           <Routes>
             <Route exact strict path='' element={ <HomePage/> }/>
             <Route exact strict path='/pacientes' element={ <PacientesPage/> }/>
+            <Route exact strict path='/alta' element={ <AltaPacienteFormPage/> }/>
             <Route exact strict path='/pacientes/:id' element={ <PacientePage/> }/>
             <Route exact strict path='/pacientes/:id/notas' element={ <NotasPage/> }/>
             <Route exact strict path='/pacientes/:id/historias' element={ <HistoriasPage/> }/>

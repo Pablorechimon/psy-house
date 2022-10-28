@@ -2,7 +2,7 @@ import React , {useState} from "react";
 import HistoriaForm from "./HistoriaForm";
 import { updateHistoria } from "../../services/HistoriasService";
 
-const Historia = ({key, historia}) => {
+const Historia = ({historia}) => {
 
     const [isEditing, setIsEditing] = useState(false);
 

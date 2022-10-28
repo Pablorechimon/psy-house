@@ -2,7 +2,7 @@ import React , {useState} from "react";
 import ConceptualizacionForm from "./ConceptualizacionForm";
 import { updateConceptualizacion } from "../../services/ConceptualizacionesService";
 
-const Conceptualizacion = ({key, conceptualizacion}) => {
+const Conceptualizacion = ({conceptualizacion}) => {
 
     const [isEditing, setIsEditing] = useState(false);
 

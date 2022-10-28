@@ -15,6 +15,8 @@ const CompartidosPage = () => {
         setIsLoading(true)
         
         const response = await getCompartidos(pacienteid);
+        let sortedData = response.data.sort((a,b) => {return new Date(b.fecha) - new Date(a.fecha)})
+        console.log(sortedData)
         setCompartidos(response.data)
         setIsLoading(false)
     }, [])
@@ -32,16 +34,16 @@ const CompartidosPage = () => {
 
 
     return (
-        <div>
-            <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-	            <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 ">
+        <div className='h-screen'>
+            <div className="h-100 w-full flex items-center justify-center ">
+	            <div className=" rounded  p-6 m-4 w-full lg:w-3/4 ">
                      <div className="mb-4">
-                         <h1 className="text-grey-darkest text-center">Compartidos</h1>
+                         <h1 className="text-center">Compartidos</h1>
+                         {!isLoading && <CompartidoForm setNewItem={setNewItem} pacienteid={pacienteid}/> }
                          <section>
                             {!isLoading && compartidos.length > 0 && <CompartidosList compartidos={compartidos} />}
                             {isLoading && <p>Loading ...</p>}
                         </section>    
-                        {!isLoading && <CompartidoForm setNewItem={setNewItem} pacienteid={pacienteid}/> }
                      </div>
                 </div>
             </div>

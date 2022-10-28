@@ -4,19 +4,16 @@ import { getPaciente } from "../../services/PacientesService";
 
 const PacientePagoForm = ({setNewItem, pago, pacienteid}) => {
 
-    const [formState, setFormState] = useState({monto_abonado : pago ? pago.monto_abonado : null});
-    const [paciente, setPaciente] = useState([]);
+    const [formState, setFormState] = useState({monto_abonado : pago ? pago.monto_abonado : null, 'precio_consulta': null});
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchPacienteHandler = useCallback(async () => {
         setIsLoading(true)
         
         const response = await getPaciente(pacienteid);
-        setPaciente(response.data)
-        console.log(paciente)
+        let paciente = response.data
         formState.precio_consulta = paciente.valor_consulta
         setFormState(formState)
-        console.log(formState)
         setIsLoading(false)
     }, [])
     

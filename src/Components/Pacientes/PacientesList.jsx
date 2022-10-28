@@ -4,10 +4,10 @@ import Paciente from './Paciente';
 const PacientesList = (props) => {
     
     return (
-        <ul className='flex flex-wrap justify-around items-stretch'>
+        <ul className='grid grid-cols-4 gap-4 gap-x-8 gap-y-8'>
             {props.pacientes.map((paciente) => (
                 <Paciente
-                    key={paciente.id}
+                    key={`paciente-card-${paciente._id}`}
                     paciente={paciente}
                 />
             ))}

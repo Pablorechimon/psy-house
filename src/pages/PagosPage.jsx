@@ -23,11 +23,11 @@ const PagosPage = () => {
 
 
     return (
-        <div>
-            <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-	            <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 ">
+        <div className='h-screen'>
+            <div className="w-full flex items-center justify-center bg-teal-lightest">
+	            <div className="rounded p-6 m-4 w-full lg:w-3/4 ">
                      <div className="mb-4">
-                         <h1 className="text-grey-darkest text-center">Deudores</h1>
+                         <h1 className="text-grey-darkest text-center text-4xl">Deudores</h1>
                          <section>
                             {!isLoading && pagos.length > 0 && <PagosList pagos={pagos} />}
                             {isLoading && <p>Loading ...</p>}

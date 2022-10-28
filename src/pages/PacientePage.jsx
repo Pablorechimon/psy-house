@@ -44,16 +44,18 @@ const PacientePage = () => {
     }
 
     return (
-        <div>
+        <div className='h-screen'>
             <section>
                 {!isLoading && paciente && <PacienteX paciente={paciente} />}
                 {isLoading && <p>Loading ...</p>}
             </section>    
-            <button onClick={clickCompartidosHandler}> Ver Compartidos con Paciente </button>
-            <button onClick={clickConceptualizacionesHandler}> Ver Conceptualizaciones con Paciente </button>
-            <button onClick={clickHistoriasHandler}> Ver Historias con Paciente </button>
-            <button onClick={clickNotasHandler}> Ver Notas con Paciente </button>
-            <button onClick={clickPacientePagosHandler}> Agregar Pago de Paciente </button>
+            <div className='flex flex-nowrap justify-center'>
+            <button onClick={clickCompartidosHandler} className='btn-button'> Ver Compartidos con Paciente </button>
+            <button onClick={clickConceptualizacionesHandler} className='btn-button'> Ver Conceptualizaciones con Paciente </button>
+            <button onClick={clickHistoriasHandler} className='btn-button'> Ver Historias con Paciente </button>
+            <button onClick={clickNotasHandler} className='btn-button'> Ver Notas con Paciente </button>
+            <button onClick={clickPacientePagosHandler} className='btn-button'> Agregar Pago de Paciente </button>
+            </div>
         </div>
     )
 };

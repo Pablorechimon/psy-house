@@ -32,11 +32,11 @@ const HistoriasPage = () => {
 
 
     return (
-        <div>
-            <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-	            <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 ">
+        <div className='h-screen'>
+            <div className="h-100 w-full flex items-center justify-center">
+	            <div className=" rounded p-6 m-4 w-full lg:w-3/4 ">
                      <div className="mb-4">
-                         <h1 className="text-grey-darkest text-center">Historias</h1>
+                         <h1 className="text-center">Historias</h1>
                          <section>
                             {!isLoading && historias.length > 0 && <HistoriasList historias={historias} />}
                             {isLoading && <p>Loading ...</p>}

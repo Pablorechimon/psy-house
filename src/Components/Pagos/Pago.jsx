@@ -1,7 +1,7 @@
 import {React, useState, useEffect, useCallback} from "react";
 import { getDeudor } from "../../services/PagosService";
 
-const Pago = ({key, pago}) => {
+const Pago = ({pago}) => {
     
     const [nombre, setNombre] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -22,9 +22,9 @@ const Pago = ({key, pago}) => {
 
 
     return (
-        <div>
+        <div className="flex flex-col ">
             <section>
-                {!isLoading && nombre.length > 0 && <><h1>{nombre}</h1><h1>{pago.deuda}</h1></>}
+                {!isLoading && nombre.length > 0 && <><h1 className="p-2 m-4">{nombre}</h1><h1>Monto Adeudado: {pago.deuda}</h1></>}
                 {isLoading && <p>Loading ...</p>}
             </section>    
 

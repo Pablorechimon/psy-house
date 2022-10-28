@@ -35,3 +35,8 @@ export async function updateTarea(tarea){
         return {message: 'Error while updating Tareas', error: error}
     }
 }
+
+export async function completeTarea(tarea){
+    const tareaFinalizada = {...tarea, 'finalizado':true}
+    updateTarea(tareaFinalizada)
+}

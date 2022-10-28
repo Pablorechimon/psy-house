@@ -8,7 +8,7 @@ const NotasList = (props) => {
             <div>
             {props.notas.map((nota) => (
                 <Nota
-                    key={nota.id}
+                    key={nota._id}
                     nota={nota}
                 />
             ))}

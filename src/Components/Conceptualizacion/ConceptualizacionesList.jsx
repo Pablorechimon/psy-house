@@ -9,7 +9,7 @@ const ConceptualizacionesList = (props) => {
             <div>
             {props.conceptualizaciones.map((conceptualizacion) => (
                 <Conceptualizacion
-                    key={conceptualizacion.id}
+                    key={conceptualizacion._id}
                     conceptualizacion={conceptualizacion}
                 />
             ))}

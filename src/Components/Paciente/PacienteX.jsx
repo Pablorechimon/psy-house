@@ -18,14 +18,10 @@ const PacienteX = ({key, paciente}) => {
     const edad = getAge(paciente.fecha_nacimiento)
     
     return (
-        <div className='divide-y divide-gray-200'>
-            <li className='py-4 flex justify-around flex items-stretch'>
-                <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-                    <div className="shrink-0 h-4 w-4">
-                        <img className="h-4 w-4" src="https://www.pngkit.com/png/detail/202-2022289_web-reconceptualization-and-redesign-of-carnet-jove-android.png" alt="logo paciente"/>
-                    </div>
-                <div>
-                    <div className="text-xl font-medium text-black">Nombre: {paciente.nombre} {paciente.apellido}</div>
+        <div className='mb-12'>
+            <h1 className='text-center text-4xl p-4 m-4'> Información de {paciente.nombre} {paciente.apellido}</h1>
+            <li className='py-4 grid grid-cols-6 gap-16'>
+                        <p className="text-slate-500 ">Nombre Completo: {paciente.nombre} {paciente.apellido}</p>
                         <p className="text-slate-500">DNI: {paciente.DNI}</p>
                         <p className="text-slate-500">Telefono: {paciente.telefono_personal}</p>                       
                         <p className="text-slate-500">Edad: {edad}</p>
@@ -47,8 +43,6 @@ const PacienteX = ({key, paciente}) => {
                         <p className="text-slate-500">Consumo de Sustancias: {paciente.consumo_sustancias}</p>
                         <p className="text-slate-500">Finalizo el Tratamiento: {paciente.tratamiento_finalizado ? 'Si' : 'No'}</p>
                         <p className="text-slate-500">Fecha de Inicio del Paciente: {paciente.fecha_inicio_tramite}</p>
-                    </div>
-                </div>
             </li>
         </div>
     )

@@ -33,11 +33,11 @@ const TareasPage = () => {
 
 
     return (
-        <div>
-            <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-	            <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 ">
+        <div className='h-screen'>
+            <div className="h-100 w-full flex items-center justify-center bg-teal-lightest">
+	            <div className="rounded p-6 m-4 w-full lg:w-3/4 ">
                      <div className="mb-4">
-                         <h1 className="text-grey-darkest text-center">Todo List</h1>
+                         <h1 className="text-grey-darkest text-center p-4 m-4 text-4xl">Todo List</h1>
                          <section>
                             {!isLoading && tareas.length > 0 && <TareasList tareas={tareas} /> }
                             {isLoading && <p>Loading ...</p>}

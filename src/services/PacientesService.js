@@ -14,7 +14,6 @@ export async function getPacientes(){
 export async function getPaciente(id_paciente){
     try {
         const response = await fetch(backend+`/pacientes/${id_paciente}`)
-        console.log(response)
         return await response.json();
     }
     catch (error) {
@@ -24,7 +23,7 @@ export async function getPaciente(id_paciente){
 
 export async function createPaciente(paciente){
     try{
-        const response = await fetch(backend+`/pacientes/`,  {
+        const response = await fetch(backend + `/pacientes/`,  {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(paciente)

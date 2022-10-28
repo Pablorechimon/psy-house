@@ -8,7 +8,7 @@ const HistoriasList = (props) => {
             <div>
             {props.historias.map((historia) => (
                 <Historia
-                    key={historia.id}
+                    key={historia._id}
                     historia={historia}
                 />
             ))}

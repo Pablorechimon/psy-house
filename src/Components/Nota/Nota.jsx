@@ -2,7 +2,7 @@ import React , {useState} from "react";
 import NotaForm from "./NotaForm";
 import { updateNota } from "../../services/NotasService";
 
-const Nota = ({key, nota}) => {
+const Nota = ({nota}) => {
 
     const [isEditing, setIsEditing] = useState(false);
 

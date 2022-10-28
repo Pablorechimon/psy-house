@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import TareaForm from "./TareaForm";
-import { updateTarea } from "../../services/TareasService";
+import { updateTarea, completeTarea } from "../../services/TareasService";
 
-const Tarea = ({key, tarea}) => {
+const Tarea = ({ tarea}) => {
 
     const [isEditing, setIsEditing] = useState(false);
 
-    const clickHandler = () => {
+    const clickEditHandler = () => {
         setIsEditing(!isEditing)
     }
 
+    const clickCompleteHandler = () => {
+        completeTarea({...tarea, _id:tarea._id})
+    }
+
     return (
-        <div>
-                {!isEditing ? <p className="w-full text-grey-darkest">{tarea.descripcion}</p> : <TareaForm tarea={tarea} updateTarea={updateTarea} setIsEditing={setIsEditing}/>}
-                <button className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">Done</button>
-                <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red" onClick={clickHandler}>Editar</button>
+        <div className="flex ">
+                {!isEditing ? <p className="w-full p-4">{tarea.descripcion}</p> : <TareaForm tarea={tarea} updateTarea={updateTarea} setIsEditing={setIsEditing}/>}
+                <button className="btn-done" onClick={clickCompleteHandler}>Completada</button>
+                <button className="btn-button" onClick={clickEditHandler}>Editar</button>
         </div>
     )
 }
