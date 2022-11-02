@@ -23,9 +23,9 @@ const PagosPage = () => {
 
 
     return (
-        <div className='h-screen'>
-            <div className="w-full flex items-center justify-center bg-teal-lightest">
-	            <div className="rounded p-6 m-4 w-full lg:w-3/4 ">
+        <div className='h-screen  flex items-center justify-center bg-teal-lightest'>
+            <div className="w-full ">
+	            <div className=" ">
                      <div className="mb-4">
                          <h1 className="text-grey-darkest text-center text-4xl">Deudores</h1>
                          <section>

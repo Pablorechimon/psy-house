@@ -1,5 +1,12 @@
 import {React, useState, useEffect, useCallback} from "react";
+
+
 import { getDeudor } from "../../services/PagosService";
+
+
+
+
+  
 
 const Pago = ({pago}) => {
     
@@ -20,11 +27,14 @@ const Pago = ({pago}) => {
         fetchNombreHandler()
     }, [fetchNombreHandler])
 
-
     return (
-        <div className="flex flex-col ">
+        <div className="flex flex-col justify-center">
             <section>
-                {!isLoading && nombre.length > 0 && <><h1 className="p-2 m-4">{nombre}</h1><h1>Monto Adeudado: {pago.deuda}</h1></>}
+                {!isLoading && nombre.length > 0 && 
+                <>
+                <h1 className="p-2 m-4">{nombre}</h1>
+                <h1>Monto Adeudado: {pago.deuda}</h1>
+                </>}
                 {isLoading && <p>Loading ...</p>}
             </section>    
 
