@@ -8,7 +8,7 @@ const PacientePagoList = (props) => {
             <div>
             {props.pagos.map((pago) => (
                 <PacientePago
-                    key={pago.id}
+                    key={pago._id}
                     pago={pago}
                 />
             ))}

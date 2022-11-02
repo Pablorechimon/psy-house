@@ -11,10 +11,16 @@ const Nota = ({nota}) => {
     }
 
     return (
-        <div>
-            {!isEditing ? <p className="w-full text-grey-darkest">{nota.nota}</p> : <NotaForm nota={nota} updateNota={updateNota} setIsEditing={setIsEditing}/>}
-             <p className="w-full text-grey-darkest">{nota.fecha}</p>
-             <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red" onClick={clickHandler}>Editar</button>
+        <div className="block p-6 m-4 shadow rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            {!isEditing ? 
+            <>
+            <div className="flex flex-nowrap">
+                <p className="w-full text-grey-darkest flex-1">{nota.fecha}</p>    
+                <p className="w-full text-grey-darkest flex-auto">{nota.nota}</p>
+            </div>
+            </>: 
+            <NotaForm nota={nota} updateNota={updateNota} setIsEditing={setIsEditing}/>}
+             <button className="flex-no-shrink p-2 mt-6 border-2 rounded text-red border-red hover:text-white hover:bg-red" onClick={clickHandler}>Editar</button>
         </div>
     )
 }

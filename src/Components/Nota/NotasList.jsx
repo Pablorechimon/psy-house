@@ -4,7 +4,7 @@ import Nota from './Nota';
 const NotasList = (props) => {
     
     return (
-        <ul className='text-center grid place-items-center '>
+        <ul className='text-center place-items-center '>
             <div>
             {props.notas.map((nota) => (
                 <Nota

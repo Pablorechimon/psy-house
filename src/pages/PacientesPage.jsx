@@ -17,6 +17,7 @@ const PacientesPage = () => {
         setIsLoading(true)
         
         const response = await getPacientes();
+        response.data.sort((a, b) => a.apellido.localeCompare(b.apellido))
         setPacientes(response.data)
         setFilteredPaciente(response.data)
         setIsLoading(false)
@@ -28,7 +29,7 @@ const PacientesPage = () => {
 
     const filterButtonHandler = (selectedPaciente) => {
         const filtered = pacientes.filter((obj) => 
-            obj.nombre.startsWith(selectedPaciente)
+            obj.nombre.includes(selectedPaciente) || obj.apellido.includes(selectedPaciente)
         )
         setFilteredPaciente(filtered);
     }

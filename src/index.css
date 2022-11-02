@@ -21,12 +21,21 @@ code {
 
 @layer components {
   .btn-button {
-    @apply border border-green-dark text-cream bg-gradient-to-br from-orange to-yellow hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
+    @apply border border-green-dark text-green-dark bg-gradient-to-br from-purple-pastel to-purple-pastel hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
   }
   .btn-done {
-    @apply border border-green-dark text-cream bg-gradient-to-br from-cream to-green-dark hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
+    @apply border border-green-dark text-green-dark bg-gradient-to-br from-indigo-200 to-indigo-200 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2;
   }
   .input-box {
     @apply rounded-md box-content h-8 
+  }
+  .div-form-paciente-simple {
+    @apply p-4 m-4 relative z-0 mb-6 w-full
+  }
+  .input-double {
+    @apply block py-2.5 px-0 w-full text-sm text-cream text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
+  }
+  .label-double {
+    @apply absolute text-cream dark:text-gray-400 duration-300 transform -translate-y-6 scale-100 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-125 peer-focus:-translate-y-6
   }
 }

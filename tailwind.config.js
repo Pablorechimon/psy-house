@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   purge: ["./src/**/*.{html,js,jsx}"],
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", 'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
+  plugins: [
+    require('flowbite/plugin')
+    ],
    theme: {
     colors: {
       'blue': {
@@ -16,24 +19,19 @@ module.exports = {
           800: '#1e40af',
           900: '#1e3a8a'
       },
-      'purple': '#7e5bef',
-      'pink': '#ff49db',
+      'cyan': {
+        700: "#fae8ff",
+        800: '#E4D8DC'
+      },
+      'rosita:': {
+        100: '#E4D8DC'
+      },
+      'purple-pastel': '#C9CCD5',
+      'pink': '#DED9C4s',
       'orange': '#ff7849',
-      'green': '#74B49B',
+      'my-green': '#74B49B',
       'yellow': '#ffc82c',
       'green-dark': '#5C8D89',
-      'gray': {
-        50: '#f9fafb',
-        100: '#f3f4f6',
-        200: '#e5e7eb',
-        300: '#d1d5db',
-        400: '#9ca3af',
-        500: '#6b7280',
-        600: '#4b5563',
-        700: '#374151',
-        800: '#1f2937',
-        900: '#111827'
-    },
       'green-gray': '#A7D7C5',
       'white': '#F4F9F4',
       'cream': '#F9F8EB',

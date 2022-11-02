@@ -15,8 +15,7 @@ const CompartidosPage = () => {
         setIsLoading(true)
         
         const response = await getCompartidos(pacienteid);
-        let sortedData = response.data.sort((a,b) => {return new Date(b.fecha) - new Date(a.fecha)})
-        console.log(sortedData)
+        response.data.sort((a,b) => {return new Date(b.fecha) - new Date(a.fecha)})
         setCompartidos(response.data)
         setIsLoading(false)
     }, [])

@@ -25,7 +25,6 @@ const AltaPacienteFormPage = () => {
     const [enteredRiesgoSuicida, setEnteredRiesgoSuicida] = useState(false)
     const [enteredTratamientoPrevio, setEnteredTratamientoPrevio] = useState('')
     const [enteredConsumoSustancias, setEnteredConsumoSustancias] = useState('')
-    const [enteredTratamientoFinalizado, setEnteredTratamientoFinalizado] = useState(false)
 
     const nombreChangeHandler = (event) => {
         setEnteredNombre(event.target.value);
@@ -112,7 +111,7 @@ const AltaPacienteFormPage = () => {
         navigate("/pacientes")
     }
 
-    const submitHandler = (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault()
         const pacienteData = {
             'nombre': enteredNombre,
@@ -135,15 +134,19 @@ const AltaPacienteFormPage = () => {
             'riesgo_suicida': enteredRiesgoSuicida,
             'tratamiento_previo': enteredTratamientoPrevio,
             'consumo_sustancias': enteredConsumoSustancias,
-            'tratamiento_finalizado': enteredTratamientoFinalizado
         }
+        console.log(pacienteData)
 
-        if (pacienteData.nombre.length > 2 && pacienteData.apellido.length > 2){
-            createPaciente(pacienteData)
-            navigate("/pacientes")
-        } else {
-            console.log('Agrega Nombre y Apellido')
-        }
+            const response = await createPaciente(pacienteData)
+            if (response.status == 201) {
+                alert("Paciente creado correctamente")
+                navigate("/pacientes")
+            } else if (response.status == 501) {
+                alert("Ya existe un paciente con el mismo DNI")
+            }   else {
+                alert("Error en el servidor")
+            }
+            
             
         
     }
@@ -151,11 +154,11 @@ const AltaPacienteFormPage = () => {
     return(
         <div className="h-screen text-green-dark">
             <form onSubmit={submitHandler}>
-                <div className="p-4 m-4">
-                        <div className="grid md:grid-cols-2 md:gap-4">
-                            <div className="p-4 m-4 relative z-0 mb-6 w-full group">  
+                <div className="p-2 m-2">
+                        <div className="grid md:grid-cols-3 md:gap-4">
+                            <div className="div-form-paciente-simple group">  
                                 <input
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    className="input-double peer"
                                     name="floating_first_name" 
                                     id="floating_first_name"
                                     type='text'
@@ -164,14 +167,14 @@ const AltaPacienteFormPage = () => {
                                     required
                                     placeholder=" "
                                 />
-                                <label className="peer-focus: absolute text-green-dark dark:text-gray-400 duration-300 transform -translate-y-6 scale-100 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-125 peer-focus:-translate-y-6"
-                                    for="floating_first_name"
-                                    >Nombre: 
+                                <label className="peer-focus: label-double"
+                                    htmlFor="floating_first_name"
+                                    >* Nombre: 
                                 </label>
                             </div>
-                            <div class="p-4 m-4 relative z-0 mb-6 w-full group">    
+                            <div className="div-form-paciente-simple group">    
                                 <input
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    className="input-double peer"
                                     type='text'
                                     value={enteredApellido}
                                     onChange={apellidoChangeHandler}
@@ -180,164 +183,334 @@ const AltaPacienteFormPage = () => {
                                     required
                                     placeholder=" "
                                 />
-                                <label className="peer-focus: absolute text-green-dark dark:text-gray-400 duration-300 transform -translate-y-6 scale-100 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-125 peer-focus:-translate-y-6"
-                                    for="floating_last_name"
-                                    >Apellido: 
+                                <label className="peer-focus: label-double"
+                                    htmlFor="floating_last_name"
+                                    >* Apellido: 
+                                </label>
+                            </div>
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type="email" 
+                                    name="floating_email" 
+                                    id="floating_email"
+                                    value={enteredEmail}
+                                    onChange={emailChangeHandler}
+                                    required
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_email"
+                                    >* Email: 
                                 </label>
                             </div>
                         </div>
-                        <label className="text-cream ml-4">DNI: </label>
-                        <input
-                            className="input-box"
-                            type='number'
-                            value={enteredDNI}
-                            onChange={DNIChangeHandler}
-                        />
 
-                        <label className="text-cream ml-4">Fecha de Nacimiento: </label>
-                        <input
-                            className="input-box"
-                            type='date'
-                            min='1900-01-01'
-                            max='2099-12-31'
-                            value={enteredFechaDeNacimiento}
-                            onChange={nacimientoChangeHandler}
-                        />
-                    
-                    <div className="p-4 m-4">
-                        <label className="text-cream">Email: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredEmail}
-                            onChange={emailChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Telefono Personal: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredTelefonoPersonal}
-                            onChange={telefonoPersonalChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Telefono Tercero: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredTelefonoTercero}
-                            onChange={telefonoTerceroChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Localidad: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredLocalidad}
-                            onChange={localidadChangeHandler}
-                        />
-                    </div>
-                    <div className="p-4 m-4">
-                        <label className="text-cream ">Personas Convivientes: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredPersonasConvivientes}
-                            onChange={personasConvivientesChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Situacion Laboral: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredSituacionLaboral}
-                            onChange={situacionLaboralChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Derivante: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredDerivante}
-                            onChange={derivanteChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Tratamiento Previo: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredTratamientoPrevio}
-                            onChange={tratamientoPrevioChangeHandler}
-                        />
-                    </div>
-                    <div className="p-4 m-4">
-                        <label className="text-cream ">Motivo de Consulta: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredMotivoConsulta}
-                            onChange={motivoConsultaChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Valor de Consulta: </label>
-                        <input
-                            className="input-box"
-                            type='number'
-                            min='0.01'
-                            step='0.01'
-                            value={enteredValorConsulta}
-                            onChange={valorConsultaChangeHandler}
-                        />
-                    </div>
-                    <div className="p-4 m-4">
-                        <label className="text-cream">Antecedentes Psiquiatricos Personales: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredAntecedentesPsiquiatricosPersonales}
-                            onChange={antecedentesPsiPersonalesChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Antecedentes Psiquiatricos Familiares: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredAntecedentesPsiquiatricosFamiliares}
-                            onChange={antecedentesPsiFamiliaresChangeHandler}
-                        />
-                    </div>
-                    <div className="p-4 m-4">
-                        <label className="text-cream">Otro tratamiento en Curso: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredTratamientoEnCurso}
-                            onChange={tratamientoEnCursoChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Medicacion Actual: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredMedicacionActual}
-                            onChange={medicacionActualChangeHandler}
-                        />
-                        <label className="text-cream ml-4">Consumo de Sustancias: </label>
-                        <input
-                            className="input-box"
-                            type='text'
-                            value={enteredConsumoSustancias}
-                            onChange={consumoSustanciashangeHandler}
-                        />
-                        <label className="text-cream ml-4">Riesgo Suicida: </label>
-                        <input
-                            className="input-box"
-                            type='checkbox'
-                            value={enteredRiesgoSuicida}
-                            onChange={riesgoSuicidaChangeHandler}
-                        />
-                    </div>
-                    <div>
+                        <div className="grid md:grid-cols-3 md:gap-4">
 
-                    </div>
+
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type='number'
+                                    name="floating_dni" 
+                                    id="floating_dni"
+                                    value={enteredDNI}
+                                    onChange={DNIChangeHandler}
+                                    required
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_dni"
+                                    >* DNI: 
+                                </label>
+                            </div>
+
+
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type='date'
+                                    name="floating_nacimiento" 
+                                    id="floating_nacimiento"
+                                    min='1900-01-01'
+                                    max='2099-12-31'
+                                    value={enteredFechaDeNacimiento}
+                                    onChange={nacimientoChangeHandler}
+                                    required
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_nacimiento"
+                                    >* Fecha de Nacimiento: 
+                                </label>
+                            </div>
+
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type='text'
+                                    name="floating_localidad" 
+                                    id="floating_localidad"
+                                    value={enteredLocalidad}
+                                    onChange={localidadChangeHandler}
+                                    require
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_localidad"
+                                    >* Localidad:
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 md:gap-4">
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer placeholder:text-sm"
+                                    type="tel"
+                                    placeholder="Ej: 11-4567-8901"
+                                    pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}"
+                                    required
+                                    name="floating_tel_personal" 
+                                    onInvalid={e => e.target.setCustomValidity("El formato debe ser Ej: 11-4567-8901")}
+                                    onInput={F => F.target.setCustomValidity('')} 
+                                    id="floating_tel_personal"
+                                    value={enteredTelefonoPersonal}
+                                    onChange={telefonoPersonalChangeHandler}
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_tel_personal"
+                                    >* Telefono Personal:
+                                </label>
+                            </div>
+
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer placeholder:text-sm"
+                                        type='text'
+                                        pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}"
+                                        placeholder="Ej: 11-4567-8901"
+                                        onInvalid={e => e.target.setCustomValidity("El formato debe ser Ej: 11-4567-8901")}
+                                        onInput={F => F.target.setCustomValidity('')} 
+                                        name="floating_tel_tercero" 
+                                        id="floating_tel_tercero"
+                                        value={enteredTelefonoTercero}
+                                        onChange={telefonoTerceroChangeHandler}
+                                        required
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_tel_tercero"
+                                        >* Telefono Tercero:
+                                    </label>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 md:gap-4">
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer"
+                                        type='text'
+                                        name="floating_motivoconsulta" 
+                                        id="floating_motivoconsulta"
+                                        value={enteredMotivoConsulta}
+                                        onChange={motivoConsultaChangeHandler}
+                                        required
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_motivoconsulta"
+                                        >* Motivo de Consulta:
+                                    </label>
+                            </div>
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type='text'
+                                    name="floating_derivante" 
+                                    id="floating_derivante"
+                                    value={enteredDerivante}
+                                    onChange={derivanteChangeHandler}
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_derivante"
+                                    >Derivante:
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 md:gap-4">
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer"
+                                        type='text'
+                                        name="floating_tratamientoprevio" 
+                                        id="floating_tratamientoprevio"
+                                        value={enteredTratamientoPrevio}
+                                        onChange={tratamientoPrevioChangeHandler}
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_tratamientoprevio"
+                                        >Tratamiento Previo:
+                                    </label>
+                            </div>
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type='text'
+                                    name="floating_otrotratamiento" 
+                                    id="floating_otrotratamiento"
+                                    value={enteredTratamientoEnCurso}
+                                    onChange={tratamientoEnCursoChangeHandler}
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_otrotratamiento"
+                                    >Otro tratamiento en Curso:
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 md:gap-4">
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer"
+                                        type='text'
+                                        name="floating_consumosustancias" 
+                                        id="floating_consumosustancias"
+                                        value={enteredConsumoSustancias}
+                                        onChange={consumoSustanciashangeHandler}
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_consumosustancias"
+                                        >Consumo de Sustancias:
+                                    </label>
+                            </div>
+                            <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type='text'
+                                    name="floating_medicacion" 
+                                    id="floating_medicacion"
+                                    value={enteredMedicacionActual}
+                                    onChange={medicacionActualChangeHandler}
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_medicacion"
+                                    >Medicacion Actual:
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 md:gap-4">
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer"
+                                        type='text'
+                                        name="floating_app" 
+                                        id="floating_app"
+                                        value={enteredAntecedentesPsiquiatricosPersonales}
+                                        onChange={antecedentesPsiPersonalesChangeHandler}
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_app"
+                                        >Antecedentes Psiquiatricos Personales: 
+                                    </label>
+                            </div>
+
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer"
+                                        type='text'
+                                        name="floating_apf" 
+                                        id="floating_apf"
+                                        value={enteredAntecedentesPsiquiatricosFamiliares}
+                                        onChange={antecedentesPsiFamiliaresChangeHandler}
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_apf"
+                                        >Antecedentes Psiquiatricos Familiares:
+                                    </label>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 md:gap-2">
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer"
+                                        type='text'
+                                        name="floating_convivientes" 
+                                        id="floating_convivientes"
+                                        value={enteredPersonasConvivientes}
+                                        onChange={personasConvivientesChangeHandler}
+                                        required
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_convivientes"
+                                        >* Personas Convivientes:
+                                    </label>
+                            </div>
+
+                            <div className="div-form-paciente-simple group">
+                                    <input
+                                        className="input-double peer"
+                                        type='text'
+                                        name="floating_situacionlaboral" 
+                                        id="floating_situacionlaboral"
+                                        value={enteredSituacionLaboral}
+                                        onChange={situacionLaboralChangeHandler}
+                                        required
+                                    />
+                                    <label 
+                                        className="peer-focus: label-double"
+                                        htmlFor="floating_situacionlaboral"
+                                        >* Situacion Laboral:
+                                    </label>
+                            </div>
+                            <div className="div-form-paciente-simple group">
+                                <label className="text-cream">Riesgo Suicida: </label>
+                                <input
+                                    className="input-box"
+                                    type='checkbox'
+                                    value={enteredRiesgoSuicida}
+                                    onChange={riesgoSuicidaChangeHandler}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="div-form-paciente-simple group">
+                                <input
+                                    className="input-double peer"
+                                    type='number'
+                                    min='1000'
+                                    step='10'
+                                    name="floating_valor" 
+                                    id="floating_valor"
+                                    value={enteredValorConsulta}
+                                    onChange={valorConsultaChangeHandler}
+                                    required
+                                />
+                                <label 
+                                    className="peer-focus: label-double"
+                                    htmlFor="floating_valor"
+                                    >* Valor de Consulta:
+                                </label>
+                        </div>
                 </div>
                 <button className='btn-done ' type='submit'> Agregar Paciente</button>
             </form>
             <div>
                 <button className="btn-button" type="button" onClick={clickCancelButtonHandler}> Cancelar </button>
             </div>
-                
         </div>
     )
 }

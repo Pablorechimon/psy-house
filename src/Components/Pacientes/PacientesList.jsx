@@ -4,7 +4,7 @@ import Paciente from './Paciente';
 const PacientesList = (props) => {
     
     return (
-        <ul className='grid grid-cols-4 gap-4 gap-x-8 gap-y-8'>
+        <ul className='grid grid-cols-4 gap-4 gap-x-8 gap-y-8 bg-gradient-to-r from-my-green to-green-dark'>
             {props.pacientes.map((paciente) => (
                 <Paciente
                     key={`paciente-card-${paciente._id}`}

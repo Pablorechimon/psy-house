@@ -27,9 +27,16 @@ const NotaForm = ({setNewItem, nota, updateNota, setIsEditing, pacienteid}) => {
     }
 
     return (
-        <form className="flex mt-4" onSubmit={submitHandler}>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Agregar Nota" name="Nota" id="Nota" defaultValue={formState.nota} onChange={changeHandler}/>
-            <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal" type="submit">Add</button>
+        <form className="flex mt-4 pb-8" onSubmit={submitHandler}>
+            <textarea 
+            rows="4" 
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+            placeholder="Redacte sus notas aquí..." 
+            name="Nota" 
+            id="Nota" 
+            defaultValue={formState.nota} 
+            onChange={changeHandler}/>
+            <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal" type="submit">Agregar</button>
         </form>
     )
 }

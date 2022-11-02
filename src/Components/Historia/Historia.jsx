@@ -11,9 +11,16 @@ const Historia = ({historia}) => {
     }
 
     return (
-        <div>
-             {!isEditing ? <p className="w-full text-grey-darkest">{historia.historia}</p> : <HistoriaForm historia={historia} updateHistoria={updateHistoria} setIsEditing={setIsEditing}/>}
-             <p className="w-full text-grey-darkest">{historia.fecha}</p>
+        <div className="block p-6 m-4 shadow rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+             {!isEditing ? 
+             <>
+             <div className="flex flex-nowrap">
+             <p className="w-full text-grey-darkest flex-1">{historia.fecha}</p>
+             <p className="w-full text-grey-darkest flex-auto">{historia.historia}</p> 
+             </div>
+             </>
+             : 
+             <HistoriaForm historia={historia} updateHistoria={updateHistoria} setIsEditing={setIsEditing}/>}
              <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red" onClick={clickHandler}>Editar</button>
         </div>
     )

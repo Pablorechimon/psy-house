@@ -28,7 +28,7 @@ export async function createPaciente(paciente){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(paciente)
         })
-        return await response.json();
+        return await {data: response.json(), status:response.status};
     }
     catch (error) {
         return {message: 'Error while creating Paciente', error: error}

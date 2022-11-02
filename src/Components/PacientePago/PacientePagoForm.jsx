@@ -36,8 +36,8 @@ const PacientePagoForm = ({setNewItem, pago, pacienteid}) => {
 
     return (
         <form className="flex mt-4" onSubmit={submitHandler}>
-            {!isLoading && <input className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Agregar Pago" name="PagoPaciente" id="PagoPaciente" defaultValue={formState.monto_abonado} onChange={changeHandler}/>}
-            <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal" type="submit">Add</button>
+            {!isLoading && <input className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-green-dark" placeholder="Agregar Pago" name="PagoPaciente" id="PagoPaciente" defaultValue={formState.monto_abonado} onChange={changeHandler}/>}
+            <button className="flex-no-shrink p-2 border-2 rounded border-teal " type="submit">Add</button>
         </form>
     )
 }

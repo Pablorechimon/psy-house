@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from '../shared/Footer';
+import logo from '../img/Center-logo5.png'
 
 const HomePage = () => {
 
@@ -8,9 +9,9 @@ const HomePage = () => {
     return (
         <div className=' text-center grid place-items-center h-screen mb-6'>
             <div>
-                <h2 className="h-full text-2xl font-bold">LOGO</h2>
+                <img src={logo} alt="Logo" width="400" height="400"></img>
             </div>
-            <div className='h-full font-cursive text-6xl text-white inline-block align-text-top'>
+            <div className='h-full font-cursive text-4xl text-white inline-block align-text-top'>
                 <h1 >Bienvenidx {DUMMY_USER}</h1>
                 <p>Espero que disfrute su jornada laboral</p>
             </div>

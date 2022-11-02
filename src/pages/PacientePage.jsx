@@ -43,6 +43,10 @@ const PacientePage = () => {
         navigate("/pacientes/" + paciente._id + "/pagos")
     }
 
+    const clickEditPacienteHandler = () => {
+        
+    }
+
     return (
         <div className='h-screen'>
             <section>
@@ -55,6 +59,7 @@ const PacientePage = () => {
             <button onClick={clickHistoriasHandler} className='btn-button'> Ver Historias con Paciente </button>
             <button onClick={clickNotasHandler} className='btn-button'> Ver Notas con Paciente </button>
             <button onClick={clickPacientePagosHandler} className='btn-button'> Agregar Pago de Paciente </button>
+            <button onClick={clickEditPacienteHandler} className='btn-button'> Editar Paciente </button>
             </div>
         </div>
     )

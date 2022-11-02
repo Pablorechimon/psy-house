@@ -4,7 +4,7 @@ import Historia from './Historia';
 const HistoriasList = (props) => {
     
     return (
-        <ul className='text-center grid place-items-center '>
+        <ul className='text-center '>
             <div>
             {props.historias.map((historia) => (
                 <Historia
