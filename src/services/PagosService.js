@@ -1,17 +1,30 @@
 import { getPaciente } from "./PacientesService";
 
-export async function getPagos(){
+const backend = 'http://localhost:3000'
+
+export async function getPagos(id_usuario){
     try {
-        const response = await fetch('/pagos');
+        const response = await fetch(backend+'/pagos/usuario/' + id_usuario);
         return await response.json();
     } 
     catch(error) {
         return {message: 'Error while fetching Pagos', error: error}
     }
 }
-export async function createPagos(pago){
+
+export async function getPagosPaciente(paciente){
+    try {
+        const response = await fetch(backend + '/pacientes/' + paciente +'/pagos');
+        return await response.json();
+    } 
+    catch(error) {
+        return {message: 'Error while fetching Pagos', error: error}
+    }
+}
+
+export async function createPago(pago, paciente){
     try{
-        const response = await fetch(`/pagos`,  {
+        const response = await fetch(backend + '/pacientes/' + paciente +`/pagos`,  {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(pago)

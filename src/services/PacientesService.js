@@ -1,7 +1,9 @@
-export async function getPacientes(){
+const backend = 'http://localhost:3000'
+
+export async function getPacientes(id_usuario){
 
     try {
-        const response = await fetch('/pacientes');
+        const response = await fetch(backend+'/pacientes/usuario/'+ id_usuario);
         return await response.json();
     } 
     catch(error) {
@@ -11,7 +13,7 @@ export async function getPacientes(){
 
 export async function getPaciente(id_paciente){
     try {
-        const response = await fetch(`pacientes/${id_paciente}`)
+        const response = await fetch(backend+`/pacientes/${id_paciente}`)
         return await response.json();
     }
     catch (error) {
@@ -21,21 +23,21 @@ export async function getPaciente(id_paciente){
 
 export async function createPaciente(paciente){
     try{
-        const response = await fetch(`pacientes/`,  {
+        const response = await fetch(backend + `/pacientes/`,  {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(paciente)
         })
-        return await response.json();
+        return await {data: response.json(), status:response.status};
     }
     catch (error) {
         return {message: 'Error while creating Paciente', error: error}
     }
 }
 
-export async function updatePaciente(pacienteChanges){
+export async function updatePaciente(pacienteChanges, paciente_id){
     try{
-        const response = await fetch(`pacientes/`,  {
+        const response = await fetch(backend+`/pacientes/${paciente_id}`,  {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(pacienteChanges)            

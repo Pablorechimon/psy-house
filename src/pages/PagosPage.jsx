@@ -6,13 +6,15 @@ const PagosPage = () => {
 
     const [pagos, setPagos] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const usuario = JSON.parse(window.localStorage.getItem("user"))
+    let id_usuario = usuario._id
 
 
 
     const fetchPagosHandler = useCallback(async () => {
         setIsLoading(true)
         
-        const response = await getPagos();
+        const response = await getPagos(id_usuario);
         setPagos(response.data)
         setIsLoading(false)
     }, [])
@@ -24,10 +26,11 @@ const PagosPage = () => {
 
     return (
         <div>
-            <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-	            <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 ">
+        <h1 className="text-grey-darkest text-center text-4xl pt-4 mt-4">Deudores</h1>
+        <div className='h-screen  flex items-center justify-center bg-teal-lightest'>
+            <div className="w-full ">
+	            <div className=" ">
                      <div className="mb-4">
-                         <h1 className="text-grey-darkest text-center">Deudores</h1>
                          <section>
                             {!isLoading && pagos.length > 0 && <PagosList pagos={pagos} />}
                             {isLoading && <p>Loading ...</p>}
@@ -35,7 +38,7 @@ const PagosPage = () => {
                      </div>
                 </div>
             </div>
-
+        </div>
         </div>
     )
 };
