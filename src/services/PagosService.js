@@ -2,9 +2,9 @@ import { getPaciente } from "./PacientesService";
 
 const backend = 'http://localhost:3000'
 
-export async function getPagos(){
+export async function getPagos(id_usuario){
     try {
-        const response = await fetch(backend+'/pagos');
+        const response = await fetch(backend+'/pagos/usuario/' + id_usuario);
         return await response.json();
     } 
     catch(error) {

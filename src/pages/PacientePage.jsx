@@ -61,7 +61,7 @@ const PacientePage = () => {
                 <button onClick={clickHistoriasHandler} className='btn-button'> Ver Historias con Paciente </button>
                 <button onClick={clickNotasHandler} className='btn-button'> Ver Notas con Paciente </button>
                 <button onClick={clickPacientePagosHandler} className='btn-button'> Agregar Pago de Paciente </button>
-                <button onClick={clickEditPacienteHandler} className='btn-button'> Editar Paciente </button>
+                <button onClick={clickEditPacienteHandler} className='btn-pdf'> Editar Paciente </button>
             </div>
             }
 

@@ -4,15 +4,13 @@ import Tarea from './Tarea';
 
 const TareasList = (props) => {
 
-    const notcomplete = props.tareas.filter((tarea) => {
-        return tarea.finalizado == false
-    })
+
     
     return (
         <div>
             <ul className='text-center grid place-items-center '>
                 <div>
-                {notcomplete.map((tarea) => (
+                {props.tareas.map((tarea) => (
                     <Tarea
                         key={tarea._id}
                         tarea={tarea}

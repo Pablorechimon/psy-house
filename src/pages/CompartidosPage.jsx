@@ -34,7 +34,7 @@ const CompartidosPage = () => {
 
     return (
         <div className='h-screen'>
-            <div className="h-100 w-full flex items-center justify-center ">
+            <div className="h-100 w-full flex items-center justify-center bg-gradient-to-r from-my-green to-green-dark">
 	            <div className=" rounded  p-6 m-4 w-full lg:w-3/4 ">
                      <div className="mb-4">
                          <h1 className="text-center">Compartidos</h1>

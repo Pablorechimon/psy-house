@@ -12,7 +12,7 @@ const PacientePago = ({pago}) => {
         <div>
              <p className="w-full text-grey-darkest">Precio de Consulta: {pago.precio_consulta}</p>
              <p className="w-full text-grey-darkest">Monto Abonado: {pago.monto_abonado}</p>
-             <p className="w-full text-grey-darkest">Deuda: {pago.precio_consulta - pago.monto_abonado} </p>
+             <p className="w-full text-grey-darkest">Deuda de la consulta: {pago.precio_consulta - pago.monto_abonado} </p>
              <p className="w-full text-grey-darkest">Fecha: {day}/{month}/{year} - {time}</p>
         </div>
     )

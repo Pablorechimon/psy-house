@@ -49,7 +49,7 @@ const HistoriasPage = () => {
 
     return (
         <div className='h-screen'>
-            <div className="">
+            <div className="bg-gradient-to-r from-my-green to-green-dark">
 	            <div className=" rounded p-6 m-4 w-full  ">
                      <div className="mb-4">
                          <h1 className="text-center p-4 m-4">Historia</h1>

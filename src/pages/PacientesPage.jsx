@@ -10,13 +10,14 @@ const PacientesPage = () => {
     const [pacientes, setPacientes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filteredPaciente, setFilteredPaciente] = useState([])
-
+    const usuario = JSON.parse(window.localStorage.getItem("user"))
+    let id_usuario = usuario._id
 
 
     const fetchPacientesHandler = useCallback(async () => {
         setIsLoading(true)
         
-        const response = await getPacientes();
+        const response = await getPacientes(id_usuario);
         response.data.sort((a, b) => a.apellido.localeCompare(b.apellido))
         setPacientes(response.data)
         setFilteredPaciente(response.data)
@@ -40,6 +41,7 @@ const PacientesPage = () => {
 
     return (
         <div className='h-screen'>
+        <h1 className="text-grey-darkest text-center p-4 m-4 text-4xl">Pacientes</h1>
              <PacientesFilter 
             onClickFilter={filterButtonHandler}
             />

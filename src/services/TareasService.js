@@ -1,8 +1,8 @@
 const backend = 'http://localhost:3000'
 
-export async function getTareas(){
+export async function getTareas(id_usuario){
     try {
-        const response = await fetch(backend+'/tareas');
+        const response = await fetch(backend+'/tareas/usuario/'+ id_usuario);
         return await response.json();
     } 
     catch(error) {

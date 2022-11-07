@@ -26,6 +26,8 @@ const AltaPacienteFormPage = () => {
     const [enteredTratamientoPrevio, setEnteredTratamientoPrevio] = useState('')
     const [enteredConsumoSustancias, setEnteredConsumoSustancias] = useState('')
 
+    const usuario = JSON.parse(window.localStorage.getItem("user"))
+
     const nombreChangeHandler = (event) => {
         setEnteredNombre(event.target.value);
 
@@ -114,6 +116,7 @@ const AltaPacienteFormPage = () => {
     const submitHandler = async (event) => {
         event.preventDefault()
         const pacienteData = {
+            'id_usuario': usuario,
             'nombre': enteredNombre,
             'apellido': enteredApellido,
             'fecha_nacimiento': new Date(enteredFechaDeNacimiento),
@@ -135,7 +138,6 @@ const AltaPacienteFormPage = () => {
             'tratamiento_previo': enteredTratamientoPrevio,
             'consumo_sustancias': enteredConsumoSustancias,
         }
-        console.log(pacienteData)
 
             const response = await createPaciente(pacienteData)
             if (response.status == 201) {
@@ -152,7 +154,7 @@ const AltaPacienteFormPage = () => {
     }
 
     return(
-        <div className="h-screen text-green-dark">
+        <div className="h-screen text-green-dark bg-gradient-to-r from-my-green to-green-dark">
             <form onSubmit={submitHandler}>
                 <div className="p-2 m-2">
                         <div className="grid md:grid-cols-3 md:gap-4">

@@ -12,12 +12,13 @@ const Tarea = ({ tarea}) => {
 
     const clickCompleteHandler = () => {
         completeTarea({...tarea, _id:tarea._id})
+        window.location.reload()
     }
 
     return (
         <div className="flex ">
                 {!isEditing ? <p className="w-full p-4">{tarea.descripcion}</p> : <TareaForm tarea={tarea} updateTarea={updateTarea} setIsEditing={setIsEditing}/>}
-                <button className="btn-done" onClick={clickCompleteHandler}>Completada</button>
+                {!tarea.finalizado ? <button className="btn-done" onClick={clickCompleteHandler}>Completada</button> : <div></div>}
                 <button className="btn-button" onClick={clickEditHandler}>Editar</button>
         </div>
     )

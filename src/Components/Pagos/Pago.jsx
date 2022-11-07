@@ -13,9 +13,11 @@ const Pago = ({pago, indice, indiceActual, chartData, setCharData, setIsDataChar
         
         const response = await getDeudor(deudor);
         setNombre(response)
-        if (!response.error){
-            chartData.labels.push(response)
-            chartData.datasets[0].data.push(pago.deuda)
+        if (!response.error){ 
+            if (pago.deuda > 0){
+                chartData.labels.push(response)
+                chartData.datasets[0].data.push(pago.deuda)
+            }
             chartData.datasets[0].data.sort((a,b) => a-b)
         }
         setCharData(chartData)
@@ -34,8 +36,8 @@ const Pago = ({pago, indice, indiceActual, chartData, setCharData, setIsDataChar
             <section>
                 {!isLoading && nombre.length > 0 && 
                 <>
-                <h1 className="p-2 m-4">{nombre}</h1>
-                <h1>Monto Adeudado: {pago.deuda}</h1>
+                <h1 className="">{nombre}</h1>
+                <h1 className="pb-4">Monto Adeudado: {pago.deuda}</h1>
                 </>}
                 {isLoading && <p>Loading ...</p>}
             </section>    

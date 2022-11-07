@@ -1,9 +1,9 @@
 const backend = 'http://localhost:3000'
 
-export async function getPacientes(){
+export async function getPacientes(id_usuario){
 
     try {
-        const response = await fetch(backend+'/pacientes');
+        const response = await fetch(backend+'/pacientes/usuario/'+ id_usuario);
         return await response.json();
     } 
     catch(error) {

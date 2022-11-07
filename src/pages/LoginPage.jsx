@@ -21,9 +21,9 @@ const LoginPage = () => {
             if (response.status == 200) {
                 saveUser(response.data.data, response.data.token)
             } else if (response.status == 401) {
-                alert("Credenciales Invalidas");
+                alert("Password Incorrecta");
             } else if (response.status == 500) {
-                alert("Error en el servidor")
+                alert("Usuario no encontrado")
             }
         } else {
             alert("Rellenar Campos")

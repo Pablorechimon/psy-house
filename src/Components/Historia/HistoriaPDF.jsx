@@ -1,5 +1,6 @@
 import React from "react";
 import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import PacientesFilter from "../Pacientes/PacientesFilter";
 
     // Create styles
     Font.register({
@@ -53,13 +54,36 @@ import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/rendere
           textAlign: 'center',
           color: 'grey',
         },
+        table: { 
+            display: "table", 
+            width: "auto", 
+            borderStyle: "solid", 
+            borderWidth: 1, 
+            borderRightWidth: 0, 
+            borderBottomWidth: 0 
+          }, 
+          tableRow: { 
+            margin: "auto", 
+            flexDirection: "row" 
+          }, 
+          tableCol: { 
+            width: "25%", 
+            borderStyle: "solid", 
+            borderWidth: 1, 
+            borderLeftWidth: 0, 
+            borderTopWidth: 0 
+          }, 
+          tableCell: { 
+            margin: "auto", 
+            marginTop: 5, 
+            fontSize: 10 
+          }
       });
 
 const HistoriaPDF = ({paciente, historias}) => {
 
     var historias = historias.map(function(h, i){
         let fecha = h.fecha.split('T')[0]
-        console.log(fecha)
         return (
               <View key={i}>
                 <View >
@@ -70,6 +94,15 @@ const HistoriaPDF = ({paciente, historias}) => {
             );
       });
 
+      const getFechaNacimiento = () => {
+        if (paciente.fecha_nacimiento){
+          return paciente.fecha_nacimiento.split('T')[0]
+        }
+        return '-'
+      }
+
+    // let fecha_actual = new Date()
+
     return(
         <Document>
             <Page size="A4" style={styles.body}>
@@ -78,6 +111,39 @@ const HistoriaPDF = ({paciente, historias}) => {
                 </Text>
             <View >
                 <Text style={styles.title}>Historia Clinica del paciente {paciente.nombre} {paciente.apellido}</Text>
+                {/* <Text style={styles.subtitle}>{fecha_actual}</Text> */}
+                <View style={styles.table}> 
+                    <View style={styles.tableRow}> 
+                        <View style={styles.tableCol}> 
+                            <Text style={styles.tableCell}>Nombre: {paciente.nombre}</Text> 
+                        </View> 
+                        <View style={styles.tableCol}> 
+                            <Text style={styles.tableCell}>Apellido: {paciente.apellido}</Text> 
+                        </View> 
+                        <View style={styles.tableCol}> 
+                            <Text style={styles.tableCell}>DNI: {paciente.DNI}</Text> 
+                        </View> 
+                        <View style={styles.tableCol}> 
+                            <Text style={styles.tableCell}>Fecha de Nacimiento: {getFechaNacimiento()}</Text> 
+                        </View> 
+                    </View>
+                    <View style={styles.tableRow}> 
+                        <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>Email: {paciente.email}</Text> 
+                        </View>
+                        <View style={styles.tableCol}> 
+                            <Text style={styles.tableCell}>Localidad: {paciente.localidad}</Text> 
+                        </View> 
+                        <View style={styles.tableCol}> 
+                            <Text style={styles.tableCell}>Motivo de Consulta: {paciente.motivo_de_consulta}</Text> 
+                        </View> 
+
+                        <View style={styles.tableCol}> 
+                            <Text style={styles.tableCell}>Tratamiento Finalizado?: {paciente.tratamiento_finalizado ? 'Si' : 'No'}</Text> 
+                        </View> 
+                    </View> 
+                </View>   
+                
                 {/* Datos de Paciente Aqui */}
             </View>
             <View >     
