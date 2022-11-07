@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createConceptualizacion } from "../../services/ConceptualizacionesService";
 
-const ConceptualizacionForm = ({setNewItem, conceptualizacion, updateConceptualizacion, setIsEditing, pacienteid}) => {
+const ConceptualizacionForm = ({setNewItem, conceptualizacion, updateConceptualizacion, isEditing, setIsEditing, pacienteid}) => {
 
     const [formState, setFormState] = useState({recurso : conceptualizacion ? conceptualizacion.conceptualizacion : null});
 
@@ -78,11 +78,13 @@ const ConceptualizacionForm = ({setNewItem, conceptualizacion, updateConceptuali
                         <textarea id="editor" rows="8" className="block px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Escribe la historia..." onChange={changeHandler} required></textarea>
                     </div>
                 </div>
+                {isEditing ? <div></div> : 
                 <div className="flex">
                     <button type="submit" className="inline-flex justify-center px-5 btn-button mx-auto">
-                        Agregar Conceptualizacion
+                        Agregar Conceptualización
                     </button>
                 </div>
+                }
         </form>
     )
 }

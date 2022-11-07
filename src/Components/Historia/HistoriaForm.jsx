@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createHistoria } from "../../services/HistoriasService";
 
-const HistoriaForm = ({setNewItem, historia, updateHistoria, setIsEditing, pacienteid}) => {
+const HistoriaForm = ({setNewItem, historia, updateHistoria, isEditing,setIsEditing, pacienteid}) => {
 
     const [formState, setFormState] = useState({recurso : historia ? historia.historia : null});
 
@@ -9,7 +9,6 @@ const HistoriaForm = ({setNewItem, historia, updateHistoria, setIsEditing, pacie
         formState.historia = target.value
         setFormState(formState)
     }
-
     const submitHandler = (event) => {
         event.preventDefault()
         if (updateHistoria) {
@@ -78,11 +77,14 @@ const HistoriaForm = ({setNewItem, historia, updateHistoria, setIsEditing, pacie
                         <textarea id="editor" rows="8" className="block px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Escribe la historia..." onChange={changeHandler} required></textarea>
                     </div>
                 </div>
+                {isEditing ? <div></div> : 
                 <div className="flex">
                     <button type="submit" className="inline-flex justify-center px-5 btn-button mx-auto">
                         Agregar Historia
                     </button>
                 </div>
+                }
+
         </form>
     )
 }

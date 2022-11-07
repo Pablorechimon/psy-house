@@ -19,7 +19,7 @@ const Nota = ({nota}) => {
                 <p className="w-full text-grey-darkest flex-auto">{nota.nota}</p>
             </div>
             </>: 
-            <NotaForm nota={nota} updateNota={updateNota} setIsEditing={setIsEditing}/>}
+            <NotaForm nota={nota} updateNota={updateNota} setIsEditing={setIsEditing} IsEditing={isEditing}/>}
              <button className="flex-no-shrink p-2 mt-6 border-2 rounded text-red border-red hover:text-white hover:bg-red" onClick={clickHandler}>Editar</button>
         </div>
     )

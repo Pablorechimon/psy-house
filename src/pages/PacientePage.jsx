@@ -8,6 +8,7 @@ const PacientePage = () => {
 
     const [paciente, setPaciente] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     const pacienteid = window.location.href.split('/')[4]
 
@@ -44,23 +45,26 @@ const PacientePage = () => {
     }
 
     const clickEditPacienteHandler = () => {
-        
+        setIsEditing(!isEditing)
     }
 
     return (
         <div className='h-screen'>
             <section>
-                {!isLoading && paciente && <PacienteX paciente={paciente} />}
+                {!isLoading && paciente && <PacienteX paciente={paciente} isEditing={isEditing} setIsEditing={setIsEditing}/>}
                 {isLoading && <p>Loading ...</p>}
             </section>    
+            {isEditing ? <div></div> :
             <div className='flex flex-nowrap justify-center'>
-            <button onClick={clickCompartidosHandler} className='btn-button'> Ver Compartidos con Paciente </button>
-            <button onClick={clickConceptualizacionesHandler} className='btn-button'> Ver Conceptualizaciones con Paciente </button>
-            <button onClick={clickHistoriasHandler} className='btn-button'> Ver Historias con Paciente </button>
-            <button onClick={clickNotasHandler} className='btn-button'> Ver Notas con Paciente </button>
-            <button onClick={clickPacientePagosHandler} className='btn-button'> Agregar Pago de Paciente </button>
-            <button onClick={clickEditPacienteHandler} className='btn-button'> Editar Paciente </button>
+                <button onClick={clickCompartidosHandler} className='btn-button'> Ver Compartidos con Paciente </button>
+                <button onClick={clickConceptualizacionesHandler} className='btn-button'> Ver Conceptualizaciones con Paciente </button>
+                <button onClick={clickHistoriasHandler} className='btn-button'> Ver Historias con Paciente </button>
+                <button onClick={clickNotasHandler} className='btn-button'> Ver Notas con Paciente </button>
+                <button onClick={clickPacientePagosHandler} className='btn-button'> Agregar Pago de Paciente </button>
+                <button onClick={clickEditPacienteHandler} className='btn-button'> Editar Paciente </button>
             </div>
+            }
+
         </div>
     )
 };

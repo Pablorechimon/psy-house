@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import PacienteXEditForm from './PacienteXEditForm';
+import { updatePaciente } from '../../services/PacientesService';
 
-const PacienteX = ({key, paciente}) => {
+const PacienteX = ({key, paciente, isEditing, setIsEditing}) => {
     const navigate  = useNavigate();
 
     function getAge(dateString) {
@@ -18,6 +20,11 @@ const PacienteX = ({key, paciente}) => {
     const edad = getAge(paciente.fecha_nacimiento)
     
     return (
+        <div>
+        { isEditing ? 
+            <PacienteXEditForm setIsEditing={setIsEditing} paciente={paciente} updatePaciente={updatePaciente}/>
+            :
+        <>
         <div className='mb-12'>
             <h1 className='text-center text-4xl p-4 m-4'> Información de {paciente.nombre} {paciente.apellido}</h1>
             <li className='py-4 grid grid-cols-6 gap-16'>
@@ -44,6 +51,9 @@ const PacienteX = ({key, paciente}) => {
                         <p className="text-slate-500">Finalizo el Tratamiento: {paciente.tratamiento_finalizado ? 'Si' : 'No'}</p>
                         <p className="text-slate-500">Fecha de Inicio del Paciente: {paciente.fecha_inicio_tramite}</p>
             </li>
+        </div>
+        </>
+        }
         </div>
     )
 };

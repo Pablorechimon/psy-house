@@ -35,9 +35,9 @@ export async function createPaciente(paciente){
     }
 }
 
-export async function updatePaciente(pacienteChanges){
+export async function updatePaciente(pacienteChanges, paciente_id){
     try{
-        const response = await fetch(backend+`/pacientes/`,  {
+        const response = await fetch(backend+`/pacientes/${paciente_id}`,  {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(pacienteChanges)            

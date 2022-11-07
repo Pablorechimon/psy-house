@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createNota } from "../../services/NotasService";
 
-const NotaForm = ({setNewItem, nota, updateNota, setIsEditing, pacienteid}) => {
+const NotaForm = ({setNewItem, nota, updateNota, IsEditing, setIsEditing, pacienteid}) => {
 
     const [formState, setFormState] = useState({nota : nota ? nota.nota : null});
 
@@ -9,7 +9,6 @@ const NotaForm = ({setNewItem, nota, updateNota, setIsEditing, pacienteid}) => {
         formState.nota = target.value
         setFormState(formState)
     }
-
     const submitHandler = (event) => {
         event.preventDefault()
         if (updateNota) {
@@ -36,7 +35,9 @@ const NotaForm = ({setNewItem, nota, updateNota, setIsEditing, pacienteid}) => {
             id="Nota" 
             defaultValue={formState.nota} 
             onChange={changeHandler}/>
-            <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal" type="submit">Agregar</button>
+            { IsEditing ? <div></div> : 
+                <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal" type="submit">Agregar</button>
+            }
         </form>
     )
 }

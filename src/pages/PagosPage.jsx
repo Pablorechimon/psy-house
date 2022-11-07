@@ -27,7 +27,7 @@ const PagosPage = () => {
             <div className="w-full ">
 	            <div className=" ">
                      <div className="mb-4">
-                         <h1 className="text-grey-darkest text-center text-4xl">Deudores</h1>
+                         <h1 className="text-grey-darkest text-center text-4xl p-4 m-4">Deudores</h1>
                          <section>
                             {!isLoading && pagos.length > 0 && <PagosList pagos={pagos} />}
                             {isLoading && <p>Loading ...</p>}

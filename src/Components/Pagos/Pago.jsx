@@ -1,14 +1,7 @@
 import {React, useState, useEffect, useCallback} from "react";
-
-
 import { getDeudor } from "../../services/PagosService";
 
-
-
-
-  
-
-const Pago = ({pago}) => {
+const Pago = ({pago, indice, indiceActual, chartData, setCharData, setIsDataChart}) => {
     
     const [nombre, setNombre] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +13,16 @@ const Pago = ({pago}) => {
         
         const response = await getDeudor(deudor);
         setNombre(response)
+        if (!response.error){
+            chartData.labels.push(response)
+            chartData.datasets[0].data.push(pago.deuda)
+            chartData.datasets[0].data.sort((a,b) => a-b)
+        }
+        setCharData(chartData)
         setIsLoading(false)
+        if (indiceActual == indice -1){
+            setIsDataChart(true)
+        }
     }, [])
     
     useEffect(() => {

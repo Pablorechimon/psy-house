@@ -5,7 +5,7 @@ import Conceptualizacion from './Conceptualizacion';
 const ConceptualizacionesList = (props) => {
     
     return (
-        <ul className='text-center grid place-items-center '>
+        <ul className='text-center '>
             <div>
             {props.conceptualizaciones.map((conceptualizacion) => (
                 <Conceptualizacion

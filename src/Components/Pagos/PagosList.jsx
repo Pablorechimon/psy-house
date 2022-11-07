@@ -1,16 +1,20 @@
-import React from "react";
+import {React, useState} from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Pago from "./Pago";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+
+
+const PagosList = (props) => {
+    const [isDataChart, setIsDataChart] = useState(false)
+    const [chartData, setCharData] = useState({
+    labels: [],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -30,24 +34,33 @@ export const data = {
         borderWidth: 1,
       },
     ],
-  };
-
-const PagosList = (props) => {
+    });
     
     return (
-        <ul className="bg-gradient-to-r from-my-green to-green-dark">
-            <div className="flex justify-around">
-                {props.pagos.map((pago) => (
+      <div className="flex flex-wrap justify-evenly items-center">
+      {!isDataChart ? 
+        <div>Loading Chart...</div> 
+        : 
+        <div className="flex w-1/3 bg-cream border border-green-dark ">
+            <Pie className="py-3 px-5" data={chartData} />
+        </div>}
+        <ul className="">
+            <div className="flex-none">
+                {props.pagos.map((pago, indiceActual) => (
                     <Pago
                         key={pago._id.id_paciente}
                         pago={pago}
+                        setCharData={setCharData}
+                        chartData={chartData}
+                        setIsDataChart={setIsDataChart}
+                        indice={props.pagos.length}
+                        indiceActual={indiceActual}
                     />
                 ))}
-                <div className="h-96 w-96">
-                    <Pie className="py-3 px-5" data={data} />
-                </div>
+               
             </div>
         </ul>
+        </div>
     )
 }
 

@@ -20,7 +20,7 @@ const Historia = ({historia}) => {
              </div>
              </>
              : 
-             <HistoriaForm historia={historia} updateHistoria={updateHistoria} setIsEditing={setIsEditing}/>}
+             <HistoriaForm historia={historia} updateHistoria={updateHistoria} setIsEditing={setIsEditing} isEditing={isEditing}/>}
              <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red" onClick={clickHandler}>Editar</button>
         </div>
     )
