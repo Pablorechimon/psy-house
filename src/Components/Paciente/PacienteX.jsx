@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React from 'react';
 import PacienteXEditForm from './PacienteXEditForm';
 import { updatePaciente } from '../../services/PacientesService';
 
 const PacienteX = ({key, paciente, isEditing, setIsEditing}) => {
-    const navigate  = useNavigate();
 
     function getAge(dateString) {
         var today = new Date();
@@ -18,7 +16,21 @@ const PacienteX = ({key, paciente, isEditing, setIsEditing}) => {
     }
 
     const edad = getAge(paciente.fecha_nacimiento)
-    
+
+    const getFechaNacimiento = () => {
+        if (paciente.fecha_nacimiento){
+          return paciente.fecha_nacimiento.split('T')[0]
+        }
+        return '-'
+      }
+
+      const getFechaInicio = () => {
+        if (paciente.fecha_inicio_tramite){
+          return paciente.fecha_inicio_tramite.split('T')[0]
+        }
+        return '-'
+      }
+
     return (
         <div>
         { isEditing ? 
@@ -32,7 +44,7 @@ const PacienteX = ({key, paciente, isEditing, setIsEditing}) => {
                         <p className="text-slate-500">DNI: {paciente.DNI}</p>
                         <p className="text-slate-500">Telefono: {paciente.telefono_personal}</p>                       
                         <p className="text-slate-500">Edad: {edad}</p>
-                        <p className="text-slate-500">Fecha de Nacimiento: {paciente.fecha_nacimiento}</p>
+                        <p className="text-slate-500">Fecha de Nacimiento: {getFechaNacimiento()}</p>
                         <p className="text-slate-500">EMAIL: {paciente.email}</p>
                         <p className="text-slate-500">Telefono Tercero: {paciente.telefono_tercero}</p>
                         <p className="text-slate-500">Localidad: {paciente.localidad}</p>
@@ -49,7 +61,7 @@ const PacienteX = ({key, paciente, isEditing, setIsEditing}) => {
                         <p className="text-slate-500">Tratamiento Previo: {paciente.tratamiento_previo}</p>
                         <p className="text-slate-500">Consumo de Sustancias: {paciente.consumo_sustancias}</p>
                         <p className="text-slate-500">Finalizo el Tratamiento: {paciente.tratamiento_finalizado ? 'Si' : 'No'}</p>
-                        <p className="text-slate-500">Fecha de Inicio del Paciente: {paciente.fecha_inicio_tramite}</p>
+                        <p className="text-slate-500">Fecha de Inicio del Paciente: {getFechaInicio()}</p>
             </li>
         </div>
         </>

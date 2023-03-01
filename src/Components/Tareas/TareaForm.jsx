@@ -33,7 +33,7 @@ const TareaForm = ({setNewItem, tarea, updateTarea, setIsEditing}) => {
     return (
         <form className="flex mt-4 pb-4 mb-4" onSubmit={submitHandler}>
             <input className="text-green-dark shadow appearance-none border rounded w-full py-2 px-3 mr-4" placeholder="Agregar Tarea" name="nombre" id="nombre" defaultValue={formState.descripcion} onChange={changeHandler}/>
-            <button className="flex-no-shrink p-2 border-2 rounded border-teal hover:bg-teal" type="submit">Add</button>
+            <button className="flex-no-shrink p-2 border-2 rounded border-teal hover:bg-teal" type="submit">Agregar</button>
         </form>
     )
 }

@@ -25,6 +25,13 @@ const HistoriaForm = ({setNewItem, historia, updateHistoria, isEditing,setIsEdit
         }
     }
 
+    const getHistorias = () => {
+        if(formState.recurso){
+            return formState.recurso
+        }
+        return '-'
+    }
+
     return (
         <form onSubmit={submitHandler}>
                <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
@@ -74,10 +81,14 @@ const HistoriaForm = ({setNewItem, historia, updateHistoria, isEditing,setIsEdit
                     </div>
                     <div className="py-2 px-4 bg-white rounded-b-lg dark:bg-gray-800">
                         <label htmlFor="editor" className="sr-only">Publish post</label>
-                        <textarea id="editor" rows="8" className="block px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Escribe la historia..." onChange={changeHandler} required></textarea>
+                        <textarea id="editor" rows="8" className="block px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Escribe la historia..." defaultValue={getHistorias()} onChange={changeHandler} required></textarea>
                     </div>
                 </div>
-                {isEditing ? <div></div> : 
+                {isEditing ? 
+                    <button type="submit" className="inline-flex justify-center px-5 btn-button mx-auto">
+                        Editar Historia
+                    </button>
+                 : 
                 <div className="flex">
                     <button type="submit" className="inline-flex justify-center px-5 btn-button mx-auto">
                         Agregar Historia

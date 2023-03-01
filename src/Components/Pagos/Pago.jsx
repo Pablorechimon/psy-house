@@ -18,14 +18,14 @@ const Pago = ({pago, indice, indiceActual, chartData, setCharData, setIsDataChar
                 chartData.labels.push(response)
                 chartData.datasets[0].data.push(pago.deuda)
             }
-            chartData.datasets[0].data.sort((a,b) => a-b)
+            
         }
         setCharData(chartData)
         setIsLoading(false)
-        if (indiceActual == indice -1){
+        if (indiceActual === indice -1){
             setIsDataChart(true)
         }
-    }, [])
+    }, [pago, indice, indiceActual, chartData, setCharData, setIsDataChart,deudor])
     
     useEffect(() => {
         fetchNombreHandler()
@@ -34,11 +34,14 @@ const Pago = ({pago, indice, indiceActual, chartData, setCharData, setIsDataChar
     return (
         <div className="flex flex-col justify-center">
             <section>
-                {!isLoading && nombre.length > 0 && 
+                {!isLoading && nombre.length > 0 && pago.deuda > 0 ?
                 <>
                 <h1 className="">{nombre}</h1>
                 <h1 className="pb-4">Monto Adeudado: {pago.deuda}</h1>
-                </>}
+                </>
+                :
+                <p></p>
+                }
                 {isLoading && <p>Loading ...</p>}
             </section>    
 

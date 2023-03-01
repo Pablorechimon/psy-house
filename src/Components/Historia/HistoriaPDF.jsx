@@ -87,7 +87,7 @@ const HistoriaPDF = ({paciente, historias}) => {
         return (
               <View key={i}>
                 <View >
-                  <Text style={styles.text}>{fecha}</Text>
+                  <Text style={styles.text}>Fecha: {fecha}</Text>
                   <Text style={styles.text}>{h.historia}</Text>
                 </View>
               </View>

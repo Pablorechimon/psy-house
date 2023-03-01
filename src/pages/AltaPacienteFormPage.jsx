@@ -98,7 +98,7 @@ const AltaPacienteFormPage = () => {
     }
 
     const riesgoSuicidaChangeHandler = (event) => {
-        setEnteredRiesgoSuicida(event.target.value);
+        setEnteredRiesgoSuicida(true);
     }
 
     const tratamientoPrevioChangeHandler = (event) => {
@@ -140,16 +140,12 @@ const AltaPacienteFormPage = () => {
         }
 
             const response = await createPaciente(pacienteData)
-            if (response.status == 201) {
+            if (response.status === 201) {
                 alert("Paciente creado correctamente")
                 navigate("/pacientes")
-            } else if (response.status == 501) {
+            } else {
                 alert("Ya existe un paciente con el mismo DNI")
-            }   else {
-                alert("Error en el servidor")
-            }
-            
-            
+            } 
         
     }
 

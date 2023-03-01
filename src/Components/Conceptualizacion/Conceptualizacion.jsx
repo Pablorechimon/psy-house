@@ -9,14 +9,20 @@ const Conceptualizacion = ({conceptualizacion}) => {
     const clickHandler = () => {
         setIsEditing(!isEditing)
     }
+    const getFecha = () => {
+        if (conceptualizacion.fecha){
+          return conceptualizacion.fecha.split('T')[0]
+        }
+        return '-'
+      }
 
     return (
         <div className="block p-6 m-4 shadow rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             {!isEditing ? 
             <>
             <div className="flex flex-nowrap">
-            <p className="w-full text-grey-darkest flex-1">{conceptualizacion.fecha}</p>
-            <p className="w-full text-grey-darkest flex-auto">{conceptualizacion.conceptualizacion}</p> 
+            <p className="w-full text-grey-darkest flex-1 mr-4 pr-4">{getFecha()}</p>
+            <p className="w-full text-grey-darkest flex-auto text-left">{conceptualizacion.conceptualizacion}</p> 
             </div>
             </>
             : 

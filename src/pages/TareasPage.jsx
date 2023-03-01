@@ -20,6 +20,7 @@ const TareasPage = () => {
         let tareasCompletadas = []
         let tareasNoCompletadas = []
         const response = await getTareas(id_usuario);
+        response.data.sort((a,b) => {return new Date(b.fecha_creacion) - new Date(a.fecha_creacion)})
         response.data.forEach(tarea => {
             if (tarea.finalizado){
                 
@@ -32,7 +33,7 @@ const TareasPage = () => {
         setTareasCompletadas(tareasCompletadas)
         setTareasNoCompletadas(tareasNoCompletadas)
         setIsLoading(false)
-    }, [])
+    }, [id_usuario])
     
     useEffect(() => {
         fetchTareasHandler()
@@ -43,7 +44,7 @@ const TareasPage = () => {
             fetchTareasHandler();
             setNewItem(false)
         } 
-    }, [newItem])
+    }, [newItem, fetchTareasHandler])
 
     useEffect(() => {
         if (verCompletadas){
@@ -53,7 +54,7 @@ const TareasPage = () => {
             console.log(tareasNoCompletadas)
             setTareas(tareasNoCompletadas)
         }
-    }, [verCompletadas])
+    }, [verCompletadas, tareasNoCompletadas, tareasCompletadas])
 
     const verCompletadasHandler = () => {
         setVerCompletadas(!verCompletadas)

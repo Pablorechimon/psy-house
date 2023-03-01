@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import { loginUsuario, createUsuario } from '../services/UsuarioController';
 import { UserContext } from '../Components/Usuario/UserContext';
 import logo from '../img/Center-logo5.png'
@@ -7,6 +8,7 @@ const LoginPage = () => {
     
     const [formState, setFormState] = useState({nick : null, password: null});
     const { saveUser } = useContext(UserContext)
+    const navigate  = useNavigate();
 
     const changeHandler = ({target}) => {
         const { name, value } = target
@@ -18,11 +20,12 @@ const LoginPage = () => {
         event.preventDefault()
         if (formState.nick && formState.password) {
             const response = await loginUsuario(formState)
-            if (response.status == 200) {
+            if (response.status === 200) {
                 saveUser(response.data.data, response.data.token)
-            } else if (response.status == 401) {
+                navigate("/")
+            } else if (response.status === 401) {
                 alert("Password Incorrecta");
-            } else if (response.status == 500) {
+            } else if (response.status === 500) {
                 alert("Usuario no encontrado")
             }
         } else {
@@ -38,9 +41,10 @@ const LoginPage = () => {
             alert("La contraseña debe tener más de 4 digitos")
         } else {
             const response = await createUsuario(formState)
-            if (response.status == 201) {
+            if (response.status === 201) {
                 alert("Usuario Creado correctamente")
-            } else if (response.status = 500) {
+                window.location.reload()
+            } else if (response.status === 500) {
                 alert("El nickname ya se encuentra elejido, escoja otro")
             } else {
                 alert("Error en el Servidor")

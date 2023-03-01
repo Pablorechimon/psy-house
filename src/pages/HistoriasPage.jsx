@@ -20,6 +20,7 @@ const HistoriasPage = () => {
     const fetchHistoriasHandler = useCallback(async () => {
         setIsLoading(true) 
         const response = await getHistorias(pacienteid);
+        response.data.sort((a,b) => {return new Date(b.fecha) - new Date(a.fecha)})
         setHistorias(response.data)
         setIsLoading(false)
     }, [])

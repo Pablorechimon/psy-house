@@ -10,12 +10,19 @@ const Nota = ({nota}) => {
         setIsEditing(!isEditing)
     }
 
+    const getFecha = () => {
+        if (nota.fecha){
+          return nota.fecha.split('T')[0]
+        }
+        return '-'
+      }
+
     return (
         <div className="block p-6 m-4 shadow rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             {!isEditing ? 
             <>
             <div className="flex flex-nowrap">
-                <p className="w-full text-grey-darkest flex-1">{nota.fecha}</p>    
+                <p className="text-grey-darkest flex-1">{getFecha()}</p>    
                 <p className="w-full text-grey-darkest flex-auto">{nota.nota}</p>
             </div>
             </>: 

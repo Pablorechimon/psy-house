@@ -22,6 +22,9 @@ const PagosList = (props) => {
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
           'rgba(255, 159, 64, 0.2)',
+          'rgba(230, 159, 24, 0.2)',
+          'rgba(170, 149, 64, 0.2)',
+          'rgba(29, 240, 184, 0.2)',
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -30,6 +33,9 @@ const PagosList = (props) => {
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)',
+          'rgba(230, 159, 24, 0.2)',
+          'rgba(170, 149, 64, 0.2)',
+          'rgba(29, 240, 184, 0.2)',
         ],
         borderWidth: 1,
       },
@@ -44,7 +50,8 @@ const PagosList = (props) => {
         <div className="flex w-1/3 bg-cream border border-green-dark ">
             <Pie className="py-3 px-5" data={chartData} />
         </div>}
-        <ul className="">
+        <ul className="shadow m-4 p-4">
+            <h1 className="text-xl pb-4">Lista de Deudores: </h1>
             <div className="flex-none">
                 {props.pagos.map((pago, indiceActual) => (
                     <Pago

@@ -15,9 +15,10 @@ const ConceptualizacionesPage = () => {
         setIsLoading(true)
         
         const response = await getConceptualizaciones(pacienteid);
+        response.data.sort((a,b) => {return new Date(b.fecha) - new Date(a.fecha)})
         setConceptualizaciones(response.data)
         setIsLoading(false)
-    }, [])
+    }, [pacienteid])
     
     useEffect(() => {
         fetchConceptualizacionesHandler()
@@ -28,7 +29,7 @@ const ConceptualizacionesPage = () => {
             fetchConceptualizacionesHandler();
             setNewItem(false)
         } 
-    }, [newItem])
+    }, [newItem, fetchConceptualizacionesHandler])
 
 
     return (
